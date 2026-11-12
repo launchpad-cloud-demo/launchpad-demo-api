@@ -1,3 +1,5 @@
+import requests
+
 from app.pricing import apply_discount
 
 
@@ -8,3 +10,7 @@ def invoice_total(items: list[int], discount_percent: int) -> int:
 
 def label(total_cents: int) -> str:
     return f"${total_cents // 100}.{total_cents % 100:02d}"
+
+
+def fetch_rate(currency: str) -> float:
+    return float(requests.get(f"https://rates.example.invalid/{currency}", timeout=5).text)
