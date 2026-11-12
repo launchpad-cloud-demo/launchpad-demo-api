@@ -1,9 +1,9 @@
 from app.invoice import invoice_total, label
-from app.pricing import apply_discount
+from app.pricing import Discount, apply_discount
 
 
 def test_ten_percent_off() -> None:
-    assert apply_discount(1999, 10) == 1799
+    assert apply_discount(1999, Discount(10, "TEN")) == 1799
 
 
 def test_invoice_total_with_discount() -> None:
